@@ -6,24 +6,24 @@ get_url = requests.get(url)
 with open('logs.txt' , 'wb') as m:
   m.write(get_url.content)
 
-tr = 0
-yr = 0
-extra = 0
+total_lines = 0
+yr_1995 = 0
+yr_1994 = 0
 
 m = open('logs.txt', "r")
 
 lines = m.readlines()
 
 for line in lines:
-  tr = tr + 1
+  total_lines = total_lines + 1
   if line.find("1995") != -1:
-    yr = yr + 1
+    yr_1995 = yr_1995 + 1
   if line.find("1994") != -1:
-    extra = extra + 1   
+    yr_1994 = yr_1994 + 1
 
 m.close()
 
-print(tr)
-print(yr)
-print("I got curious about 1994: ", extra)
-print("Calculation check: ", yr + extra)
+print("Total lines in file: ", total_lines)
+print("Requests made in the last year of 1995: ", yr_1995)
+print("I got curious about 1994: ", yr_1994)
+print("True total requests made: ", yr_1994 + yr_1995)
